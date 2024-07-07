@@ -54,14 +54,14 @@ export PARAM_WRITE_FIFO_DELAY := 0
 export PARAM_READ_FIFO_DELAY := 0
 
 ifeq ($(SIM), icarus)
-	PLUSARGS += -fst
+#	PLUSARGS += -fst
 
 	COMPILE_ARGS += $(foreach v,$(filter PARAM_%,$(.VARIABLES)),-P $(TOPLEVEL).$(subst PARAM_,,$(v))=$($(v)))
 
-	ifeq ($(WAVES), 1)
+#	ifeq ($(WAVES), 1)
 		VERILOG_SOURCES += iverilog_dump.v
 		COMPILE_ARGS += -s iverilog_dump
-	endif
+#endif
 else ifeq ($(SIM), verilator)
 	COMPILE_ARGS += -Wno-SELRANGE -Wno-WIDTH -Wno-CASEINCOMPLETE
 
@@ -77,11 +77,11 @@ include $(shell cocotb-config --makefiles)/Makefile.sim
 iverilog_dump.v:
 	echo 'module iverilog_dump();' > $@
 	echo 'initial begin' >> $@
-	echo '    $$dumpfile("$(TOPLEVEL).fst");' >> $@
+	echo '    $$dumpfile("$(TOPLEVEL).vcd");' >> $@
 	echo '    $$dumpvars(0, $(TOPLEVEL));' >> $@
 	echo 'end' >> $@
 	echo 'endmodule' >> $@
 
 clean::
 	@rm -rf iverilog_dump.v
-	@rm -rf dump.fst $(TOPLEVEL).fst
+	@rm -rf dump.vcd $(TOPLEVEL).vcd
