@@ -3,4 +3,7 @@
 *.pyc
 *.vvp
 *.kate-swp
-
+*.fst
+*.vcd
+sim_build/
+iverilog_dump.v
