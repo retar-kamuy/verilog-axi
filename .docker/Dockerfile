@@ -16,4 +16,5 @@ RUN dnf -y install git autoconf make clang bison flex \
     && alternatives --set python3 /usr/bin/python3.12 \
     && pip3 install cocotb cocotbext-axi cocotb-test \
     && dnf -y install epel-release \
-    && dnf -y install gtkwave libGL
+    && dnf -y install gtkwave libGL \
+    && dnf clean all
