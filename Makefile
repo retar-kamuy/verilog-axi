@@ -8,7 +8,7 @@ BUILD_FLAGS	 = --rm
 BUILD_FLAGS	+= --tag $(BUILD_IMAGE)
 BUILD_FLAGS	+= -f ./.docker/Dockerfile
 
-RUN_FLAGS	 = -it
+RUN_FLAGS	 = --interactive --tty
 RUN_FLAGS	+= --detach
 RUN_FLAGS	+= --name $(CONTAINER)
 

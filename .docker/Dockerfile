@@ -1,4 +1,4 @@
-FROM rockylinux:8 AS r8-iverilog
+FROM rockylinux:8
 ENV CC=clang
 ENV CXX=clang++
 RUN dnf -y install git autoconf make clang bison flex \
